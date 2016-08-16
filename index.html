@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="assets/favicon.png">
+        <title>When Got Time?</title>
+        <link rel="stylesheet" type="text/css" href="stylesheets/custom.css">
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="page-header">
+                <h1>
+                    <img src="assets/owl.png" style="width:150px; height:150px;">
+                    When Got Time?
+                </h1>
+            </div>
+            <form id="add-entry">
+                <div class="form-group">
+                    <div class="enter" id="feedback">
+                        <label id="feedback-text">Enter Link Here</label>
+                    </div>
+                    <input type="text" id="url" class="form-control">
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary" style="float:right; display:inline">
+                    <span class="glyphicon glyphicon-plus"></span> Add Timetable
+                </button>
+            </form>
+        </div>
+
+        <div class = "container">
+            <input type="button" class="btn btn-default" value="View/Remove Links" id="viewlinks"/>
+            <table class="table-condensed" id="linktable">
+                <thead id="linktable-head">
+                    <tr>
+                        <th id="no-link"></th>
+                        <th> Display </th>
+                    </tr>
+                </thead>
+                <tbody id="body">
+                </tbody>
+            </table>
+            <hr>
+        </div>
+
+        <div class= "container">
+            <ul class="tabs">
+                <li><a href="#odd">Odd week</a></li>
+                <li><a href="#even">Even Week</a></li>
+            </ul>
+
+            <!--Hovering div to show mods-->
+            <div id="hovermods">Ongoing Lessons</div>
+
+            <div id="odd">
+                <table class="table table-bordered timetable" id="timetable" width="100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">0800</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">0900</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1000</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1100</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1200</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1300</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1400</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1500</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1600</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1700</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1800</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1900</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">2000</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">2100</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">2200</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">2300</th>
+                        </tr>
+                    </thead>
+                    <tbody id="slots">
+                        <tr>
+                            <th class ="day" data-placement="top" title="Click to block out by day">Monday</th>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                        </tr>
+                        <tr>
+                            <th class ="day" data-placement="top" title="Click to block out by day">Tuesday</th>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                        </tr>
+                        <tr>
+                            <th class ="day" data-placement="top" title="Click to block out by day">Wednesday</th>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                        </tr>
+                        <tr>
+                            <th class ="day" data-placement="top" title="Click to block out by day">Thursday</th>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                        </tr>
+                        <tr>
+                            <th class ="day" data-placement="top" title="Click to block out by day">Friday</th>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="even">
+                <div id="hovermods">Ongoing lessons</div>
+                <table class="table table-bordered" id="even-timetable" width="100%">
+                    <thead class = "head">
+                        <tr>
+                            <th></th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">0800</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">0900</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1000</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1100</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1200</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1300</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1400</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1500</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1600</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1700</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1800</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">1900</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">2000</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">2100</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">2200</th>
+                            <th class ="time" data-placement="top" title="Click to block out by hour">2300</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody id="slots">
+                        <tr>
+                            <th class ="day" data-placement="top" title="Click to block out by day">Monday</th>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                        </tr>
+                        <tr>
+                            <th class ="day" data-placement="top" title="Click to block out by day">Tuesday</th>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                        </tr>
+                        <tr>
+                            <th class ="day" data-placement="top" title="Click to block out by day">Wednesday</th>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                        </tr>
+                        <tr>
+                            <th class ="day" data-placement="top" title="Click to block out by day">Thursday</th>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                        </tr>
+                        <tr>
+                            <th class ="day" data-placement="top" title="Click to block out by day">Friday</th>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--Legend-->
+            <p>
+                <mark style="background-color: #B4CFEC">Colour</mark> indicates that everyone is free
+            </p>
+            <p>
+                <mark class="unavailable">Colour</mark> indicates that someone has a class
+            </p>
+            <p>
+                <mark class="cblocked">Colour</mark> indicates that the timeslot has been blocked off
+            </p>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,104 @@
+* {
+    font-family: 'Roboto Slab';
+}
+
+#linktable {
+    display:none;
+}
+
+#even {
+    display:none;
+}
+
+.container {
+    padding: 2px;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+    text-align: center;
+}
+
+#timetable, #timetable th, #even-timetable, #even-timetable th{
+    border: none;
+}
+
+tr td {
+    background-color: #B4CFEC;
+    text-align: center;
+}
+
+#timetable td, #even-timetable td {
+    border-color: #333;
+}
+
+ul.tabs li{
+    background: none;
+    color: #fff;
+    font-weight: 600;
+    display: inline;
+    padding: 2px 5px;
+    cursor: pointer;
+    list-style:none;
+    float:left;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.tabs a {
+    padding:5px 10px;
+    display:inline-block;
+    background:#fff;
+    color:#333;
+    text-decoration:none;
+    border-radius: 25px;
+}
+.tabs a.active {
+    background: #98b2d5;
+    color:#000;
+    text-decoration: none;
+}
+
+
+th {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.cblocked, .hblocked, .vblocked {
+    background-color: #808080;
+}
+
+.unavailable {
+    background-color: #333;
+}
+
+.time, .day {
+    text-align: center;
+}
+
+#feedback {
+    border-radius: 25px;
+}
+
+.enter {
+    padding-top: 5px;
+    margin: 5px;
+}
+
+#linktable tbody tr td {
+    background-color: #c9ddf1;
+}
+
+#hovermods {
+    display: none;
+    position: absolute;
+    color: white;
+    background-color: #4d4d4d;
+    border: 1px solid #999;
+    padding: 5px;
+}
