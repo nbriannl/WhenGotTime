@@ -16,14 +16,14 @@
 
 //timeslot array
 var days = 5;
-var hours = 24;
+var half_hours = 48;
 var timeslots_arr_odd = new Array(days);
 var timeslots_arr_even = new Array(days);
 
 for (i = 0; i < days; i++) {
-    timeslots_arr_odd[i] = new Array(hours);
-    timeslots_arr_even[i] = new Array(hours);
-    for (j = 0; j < hours; j++) {
+    timeslots_arr_odd[i] = new Array(half_hours);
+    timeslots_arr_even[i] = new Array(half_hours);
+    for (j = 0; j < half_hours; j++) {
         timeslots_arr_odd[i][j] = [true];
         timeslots_arr_even[i][j] = [true];
     }
@@ -112,7 +112,7 @@ $(document).ready(function () {
     //hover over cell to show mods
     $('.cell').mouseenter(function (e) {
         var cell_row = $(this).parent().index(); //get position of cell
-        var cell_col = $(this).index() + 7;
+        var cell_col = $(this).index() + 15;
         if (active_tab === "#odd") {
             active_tab = 1;
         } else if (active_tab === "#even") {
@@ -205,7 +205,10 @@ $(document).ready(function () {
         $(this).toggleClass('strikethrough');
         var position = $(this).index();
         $(this).parent().parent().next().children().each(function () {
-            $(this).children().eq(position).toggleClass('vblocked');
+
+            $(this).children().eq(position*2-1).toggleClass('vblocked');
+            $(this).children().eq(position*2).toggleClass('vblocked');
+
         });
     });
 
@@ -278,8 +281,14 @@ function unfillTimeslots(year, sem, mods) {
             for (j = 0; j < mod_timetable.length; j++) {
                 if (mod_timetable[j].LessonType === class_type && mod_timetable[j].ClassNo === class_num) {
                     //get start and end time
-                    start_time = mod_timetable[j].StartTime / 100;
-                    end_time = mod_timetable[j].EndTime / 100;
+                    start_time = (Math.floor(mod_timetable[j].StartTime / 100)) *2;
+                    end_time = (Math.floor(mod_timetable[j].EndTime / 100)) *2;
+                    if (mod_timetable[j].StartTime % 100 !=0) {
+                        start_time++;
+                    }
+                    if (mod_timetable[j].EndTime % 100 !=0) {
+                        end_time++;
+                    }
                     day = mod_timetable[j].DayText;
                     day = dayToNum(day); //convert text day to numerical
                     //change array accordingly
@@ -334,6 +343,7 @@ function parseLink(link) {
     innerArray.push(sem);
     innerArray.push(mods);
     links_list.push(innerArray);
+
     fillTimeslot(year, sem, mods, false);
 }
 
@@ -342,15 +352,15 @@ function displayOnTable() {
     var row;
     var col;
     $('#timetable').find('td').each(function (index) {
-        col = index % 16 + 8; //need a displacemen of 8 since 24 cols in array
-        row = Math.floor(index / 16); //16 cols in a row depicted in table
+        col = index % 32 + 16; //need a displacemen of 8 since 24 cols in array
+        row = Math.floor(index / 32); //16 cols in a row depicted in table
         if (timeslots_arr_odd[row][col][0] === false) {
             $(this).addClass('unavailable');
         }
     });
     $('#even-timetable').find('td').each(function (index) {
-        col = index % 16 + 8; //need a displacemen of 8 since 24 cols in array
-        row = Math.floor(index / 16); //16 cols in a row depicted in table
+        col = index % 32 + 16; //need a displacemen of 8 since 24 cols in array
+        row = Math.floor(index / 32); //16 cols in a row depicted in table
         if (timeslots_arr_even[row][col][0] === false) {
             $(this).addClass('unavailable');
         }
@@ -362,15 +372,15 @@ function removeFromTable() {
     var row;
     var col;
     $('#timetable').find('td').each(function (index) {
-        col = index % 16 + 8; //need a displacemen of 8 since 24 cols in array
-        row = Math.floor(index / 16); //16 cols in a row depicted in table
+        col = index %32 + 16; //need a displacemen of 8 since 24 cols in array
+        row = Math.floor(index / 32); //16 cols in a row depicted in table
         if (timeslots_arr_odd[row][col][0] === true) {
             $(this).removeClass('unavailable');
         }
     });
     $('#even-timetable').find('td').each(function (index) {
-        col = index % 16 + 8; //need a displacemen of 8 since 24 cols in array
-        row = Math.floor(index / 16); //16 cols in a row depicted in table
+        col = index % 32 + 16; //need a displacemen of 8 since 24 cols in array
+        row = Math.floor(index / 32); //16 cols in a row depicted in table
         if (timeslots_arr_even[row][col][0] === true) {
             $(this).removeClass('unavailable');
         }
@@ -396,6 +406,7 @@ function fillTimeslot(year, sem, mods, checkbox) {
     var mod_display;
     var temp_mod;
     var week;
+    var weird;
 
     for (i = 0; i < mods.length; i++) {
         current_mod = mods[i];
@@ -421,16 +432,27 @@ function fillTimeslot(year, sem, mods, checkbox) {
                 //console.log(current_class);
                 if (mod_timetable[j].LessonType === class_type && mod_timetable[j].ClassNo === class_num) {
                     //get start and end time
+
                     week = mod_timetable[j].WeekText;
-                    start_time = mod_timetable[j].StartTime / 100;
-                    end_time = mod_timetable[j].EndTime / 100;
+                    
+                    start_time = (Math.floor(mod_timetable[j].StartTime / 100)) *2;
+                    end_time = (Math.floor(mod_timetable[j].EndTime / 100)) *2;
+                    if (mod_timetable[j].StartTime % 100 !=0) {
+                        start_time++;
+                    }
+                    if (mod_timetable[j].EndTime % 100 !=0) {
+                        end_time++;
+                    }
                     day = mod_timetable[j].DayText;
                     //console.log(day);
                     day = dayToNum(day); //convert text day to numerical
                     //change array accordingly
+
                     for (k = start_time; k < end_time; k++) {
+
                         placeInArray(week, timeslots_arr_odd, timeslots_arr_even, day, k, mod_display);
                     }
+                    
 
                 }
             }
@@ -448,7 +470,14 @@ function fillTimeslot(year, sem, mods, checkbox) {
 
 }
 
+// arr1 is oddweek array, arr2 is even week array, k is time/col
 function placeInArray(week, arr1, arr2, day, k, mod_display) {
+    console.log(week);
+    console.log(arr1);
+    console.log(arr2);
+    console.log(day);
+    console.log(k);
+    console.log(mod_display);
     if (week === "Odd Week") {
         arr1[day][k].push(mod_display);
         arr1[day][k][0] = false;
@@ -458,10 +487,13 @@ function placeInArray(week, arr1, arr2, day, k, mod_display) {
         arr2[day][k][0] = false;
     }
     else {
+
         arr1[day][k].push(mod_display);
         arr1[day][k][0] = false;
+
         arr2[day][k].push(mod_display);
         arr2[day][k][0] = false;
+
     }
 }
 //converts day to its corresponding numerical value
