@@ -5,13 +5,14 @@
  https://nusmods.com/timetable/2016-2017/sem1?CS1231[TUT]=14&CS1231[SEC]=2&MA1521[LEC]=SL1&MA1521[TUT]=T02&LSM1301[LEC]=SL2&CS1101S[LEC]=1&CS1101S[REC]=3&CS1101S[TUT]=5&GES1010[LEC]=1&GES1010[TUT]=E5
  https://nusmods.com/timetable/2016-2017/sem1?CS1231[SEC]=1&CS1231[TUT]=14&CS1010[SEC]=33&CS1010[TUT]=C08&MA1521[LEC]=SL1&MA1521[TUT]=T06&LSM1301[LEC]=SL2&MA1101R[LAB]=B05&MA1101R[TUT]=T06&MA1101R[LEC]=SL2 
  https://nusmods.com/timetable/2016-2017/sem1?CS1231[SEC]=1&CS1231[TUT]=14&CS1010[SEC]=33&CS1010[TUT]=C08&MA1521[LEC]=SL1&MA1521[TUT]=T06&LSM1301[LEC]=SL1&MA1101R[TUT]=T11&MA1101R[LEC]=SL2&MA1101R[LAB]=B06
- 
+ https://nusmods.com/timetable/2016-2017/sem1?CS2105[LEC]=1&CS2105[TUT]=2&CS3235[LEC]=1&CS3235[TUT]=3&CS2101[SEC]=6&CS2103T[TUT]=T6&CS4236[LEC]=1
+
  http://modsn.us/XEGC0
  http://modsn.us/34Yuh
  http://modsn.us/j1boN
  http://modsn.us/0iJ7C
  http://modsn.us/L3ujR
- 
+ http://modsn.us/hwwlZ
  */
 
 //timeslot array
@@ -63,7 +64,7 @@ $(document).ready(function () {
                     $('#add-entry')[0].reset(); //resets form
                 }
             });
-        } else if (link === ""){
+        } else if (link === "") {
             return;
         } else {
             invalidLink();
@@ -145,16 +146,16 @@ $(document).ready(function () {
                 //allows hovermods div to follow the mouse
                 //extra displacement prevents the mouse from entering the div
                 $('#hovermods').css('top', e.clientY + 8).css('left', e.clientX + 8);
-            })
+            });
         }
     }).mouseout(function () {
         $('#hovermods').hide();
         $('#hovermods').text("Ongoing Lessons"); //reset hovermods div
     });
 
-//this toggles the table of links by clicking the view links button
+    //toggles the table of links by clicking the view links button
     $('#viewlinks').click(function () {
-        if ($(this).val() == "View/Remove Links") {
+        if ($(this).val() === "View/Remove Links") {
             $(this).val('Hide Links');
             $("#linktable").toggle();
             checkLinkTable();
@@ -166,7 +167,7 @@ $(document).ready(function () {
 
     // copied this whole chunk from the site
 
-//this removes links by clicking the remove button
+    //removes links by clicking the remove button
     $('#linktable').on('click', 'input[type="button"]', function () {
         var index = $(this).closest('tr').attr('id');
         removeLink(links_list, index);
@@ -178,14 +179,12 @@ $(document).ready(function () {
     });
     $('#linktable').on('change', 'input[type="checkbox"]', function () {
         var index = $(this).closest('tr').attr("id");
-       if($(this).prop("checked")== false) { //if the checkbox is unchecked
-           removeLink(links_list, index);
-       }
-        else{
-        fillTimeslot(links_list[index][0], links_list[index][1], links_list[index][2], true);
-        displayOnTable();
-       }
-
+        if ($(this).prop("checked") === false) { //if the checkbox is unchecked
+            removeLink(links_list, index);
+        } else {
+            fillTimeslot(links_list[index][0], links_list[index][1], links_list[index][2], true);
+            displayOnTable();
+        }
     });
 
     //changes the cursor to a fat pointer when hovering over day and time
@@ -205,10 +204,8 @@ $(document).ready(function () {
         $(this).toggleClass('strikethrough');
         var position = $(this).index();
         $(this).parent().parent().next().children().each(function () {
-
-            $(this).children().eq(position*2-1).toggleClass('vblocked');
-            $(this).children().eq(position*2).toggleClass('vblocked');
-
+            $(this).children().eq(position * 2 - 1).toggleClass('vblocked');
+            $(this).children().eq(position * 2).toggleClass('vblocked');
         });
     });
 
@@ -281,12 +278,12 @@ function unfillTimeslots(year, sem, mods) {
             for (j = 0; j < mod_timetable.length; j++) {
                 if (mod_timetable[j].LessonType === class_type && mod_timetable[j].ClassNo === class_num) {
                     //get start and end time
-                    start_time = (Math.floor(mod_timetable[j].StartTime / 100)) *2;
-                    end_time = (Math.floor(mod_timetable[j].EndTime / 100)) *2;
-                    if (mod_timetable[j].StartTime % 100 !=0) {
+                    start_time = (Math.floor(mod_timetable[j].StartTime / 100)) * 2;
+                    end_time = (Math.floor(mod_timetable[j].EndTime / 100)) * 2;
+                    if (mod_timetable[j].StartTime % 100 !== 0) {
                         start_time++;
                     }
-                    if (mod_timetable[j].EndTime % 100 !=0) {
+                    if (mod_timetable[j].EndTime % 100 !== 0) {
                         end_time++;
                     }
                     day = mod_timetable[j].DayText;
@@ -307,13 +304,13 @@ function deleteFromArray(arr1, arr2, mod_display) {
 
     if (index1 > -1) {
         arr1.splice(index1, 1);
-        if (arr1.length == 1) {
+        if (arr1.length === 1) {
             arr1[0] = true;
         }
     }
     if (index2 > -1) {
         arr2.splice(index2, 1);
-        if (arr2.length == 1) {
+        if (arr2.length === 1) {
             arr2[0] = true;
         }
     }
@@ -372,7 +369,7 @@ function removeFromTable() {
     var row;
     var col;
     $('#timetable').find('td').each(function (index) {
-        col = index %32 + 16; //need a displacemen of 8 since 24 cols in array
+        col = index % 32 + 16; //need a displacemen of 8 since 24 cols in array
         row = Math.floor(index / 32); //16 cols in a row depicted in table
         if (timeslots_arr_odd[row][col][0] === true) {
             $(this).removeClass('unavailable');
@@ -434,68 +431,54 @@ function fillTimeslot(year, sem, mods, checkbox) {
                     //get start and end time
 
                     week = mod_timetable[j].WeekText;
-                    
-                    start_time = (Math.floor(mod_timetable[j].StartTime / 100)) *2;
-                    end_time = (Math.floor(mod_timetable[j].EndTime / 100)) *2;
-                    if (mod_timetable[j].StartTime % 100 !=0) {
+
+                    start_time = (Math.floor(mod_timetable[j].StartTime / 100)) * 2;
+                    end_time = (Math.floor(mod_timetable[j].EndTime / 100)) * 2;
+                    if (mod_timetable[j].StartTime % 100 !== 0) {
                         start_time++;
                     }
-                    if (mod_timetable[j].EndTime % 100 !=0) {
+                    if (mod_timetable[j].EndTime % 100 !== 0) {
                         end_time++;
                     }
                     day = mod_timetable[j].DayText;
-                    //console.log(day);
                     day = dayToNum(day); //convert text day to numerical
+
                     //change array accordingly
-
                     for (k = start_time; k < end_time; k++) {
-
                         placeInArray(week, timeslots_arr_odd, timeslots_arr_even, day, k, mod_display);
                     }
-                    
-
                 }
             }
         });
-         if(checkbox==false) {
-        if (temp_mod != mod_code) {
-            table_row.append($('<td>').text(mod_code));
+        if (checkbox === false) {
+            if (temp_mod !== mod_code) {
+                table_row.append($('<td>').text(mod_code));
+            }
+            temp_mod = mod_code;
         }
-        temp_mod = mod_code;
-        }   
     }
-    if(checkbox==false){
-    $("#linktable").append(table_row);
+    if (checkbox === false) {
+        $("#linktable").append(table_row);
     }
-
 }
 
+//updates the respective array's values
 // arr1 is oddweek array, arr2 is even week array, k is time/col
 function placeInArray(week, arr1, arr2, day, k, mod_display) {
-    console.log(week);
-    console.log(arr1);
-    console.log(arr2);
-    console.log(day);
-    console.log(k);
-    console.log(mod_display);
     if (week === "Odd Week") {
         arr1[day][k].push(mod_display);
         arr1[day][k][0] = false;
-    }
-    else if (week === "Even Week") {
+    } else if (week === "Even Week") {
         arr2[day][k].push(mod_display);
         arr2[day][k][0] = false;
-    }
-    else {
-
+    } else { //push to both odd and even weeks
         arr1[day][k].push(mod_display);
         arr1[day][k][0] = false;
-
         arr2[day][k].push(mod_display);
         arr2[day][k][0] = false;
-
     }
 }
+
 //converts day to its corresponding numerical value
 function dayToNum(day) {
     if (day === "Monday") {
