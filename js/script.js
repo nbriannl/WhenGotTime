@@ -16,7 +16,7 @@
  */
 
 //timeslot array
-var days = 5;
+var days = 6; //Monday to Saturday
 var half_hours = 48;
 var timeslots_arr_odd = new Array(days);
 var timeslots_arr_even = new Array(days);
@@ -114,22 +114,17 @@ $(document).ready(function () {
     $('.cell').mouseenter(function (e) {
         var cell_row = $(this).parent().index(); //get position of cell
         var cell_col = $(this).index() + 15;
-        if (active_tab === "#odd") {
-            active_tab = 1;
-        } else if (active_tab === "#even") {
-            active_tab = 0;
-        }
 
         if (hasClass(cell_row, cell_col, active_tab)) {
             var num_mods;
-            if (active_tab === 1) {
+            if (active_tab === "#odd") {
                 num_mods = timeslots_arr_odd[cell_row][cell_col].length;
             } else {
                 num_mods = timeslots_arr_even[cell_row][cell_col].length;
             }
             for (i = 1; i < num_mods; i++) { //add mods to hovermods div
                 var mod;
-                if (active_tab === 1) {
+                if (active_tab === "#odd") {
                     mod = timeslots_arr_odd[cell_row][cell_col][i];
                 } else {
                     mod = timeslots_arr_even[cell_row][cell_col][i];
@@ -164,8 +159,6 @@ $(document).ready(function () {
             $("#linktable").toggle();
         }
     });
-
-    // copied this whole chunk from the site
 
     //removes links by clicking the remove button
     $('#linktable').on('click', 'input[type="button"]', function () {
@@ -429,9 +422,7 @@ function fillTimeslot(year, sem, mods, checkbox) {
                 //console.log(current_class);
                 if (mod_timetable[j].LessonType === class_type && mod_timetable[j].ClassNo === class_num) {
                     //get start and end time
-
                     week = mod_timetable[j].WeekText;
-
                     start_time = (Math.floor(mod_timetable[j].StartTime / 100)) * 2;
                     end_time = (Math.floor(mod_timetable[j].EndTime / 100)) * 2;
                     if (mod_timetable[j].StartTime % 100 !== 0) {
@@ -491,6 +482,8 @@ function dayToNum(day) {
         return 3;
     } else if (day === "Friday") {
         return 4;
+    } else if (day === "Saturday") {
+        return 5;
     }
 }
 
