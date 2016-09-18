@@ -3,7 +3,7 @@
  https://nusmods.com/timetable/2016-2017/sem1?CS1231[SEC]=1&CS1231[TUT]=14&CS1010[SEC]=33&CS1010[TUT]=C08&PC1221[TUT]=T1&PC1221[LEC]=SL1&PC1221[LAB]=A1&MA1521[LEC]=SL1&MA1521[TUT]=T02&LSM1301[LEC]=SL2
  https://nusmods.com/timetable/2016-2017/sem1?CS1010[SEC]=32&CS1010[TUT]=T21&MA1521[LEC]=SL1&MA1521[TUT]=T03&GET1006[SEC]=12&MA1101R[TUT]=T13&MA1101R[LEC]=SL1&MA1101R[LAB]=B06&CS1231[SEC]=1&CS1231[TUT]=5
  https://nusmods.com/timetable/2016-2017/sem1?CS1231[TUT]=14&CS1231[SEC]=2&MA1521[LEC]=SL1&MA1521[TUT]=T02&LSM1301[LEC]=SL2&CS1101S[LEC]=1&CS1101S[REC]=3&CS1101S[TUT]=5&GES1010[LEC]=1&GES1010[TUT]=E5
- https://nusmods.com/timetable/2016-2017/sem1?CS1231[SEC]=1&CS1231[TUT]=14&CS1010[SEC]=33&CS1010[TUT]=C08&MA1521[LEC]=SL1&MA1521[TUT]=T06&LSM1301[LEC]=SL2&MA1101R[LAB]=B05&MA1101R[TUT]=T06&MA1101R[LEC]=SL2 
+ https://nusmods.com/timetable/2016-2017/sem1?CS1231[SEC]=1&CS1231[TUT]=14&CS1010[SEC]=33&CS1010[TUT]=C08&MA1521[LEC]=SL1&MA1521[TUT]=T06&LSM1301[LEC]=SL2&MA1101R[LAB]=B05&MA1101R[TUT]=T06&MA1101R[LEC]=SL2
  https://nusmods.com/timetable/2016-2017/sem1?CS1231[SEC]=1&CS1231[TUT]=14&CS1010[SEC]=33&CS1010[TUT]=C08&MA1521[LEC]=SL1&MA1521[TUT]=T06&LSM1301[LEC]=SL1&MA1101R[TUT]=T11&MA1101R[LEC]=SL2&MA1101R[LAB]=B06
  https://nusmods.com/timetable/2016-2017/sem1?CS2105[LEC]=1&CS2105[TUT]=2&CS3235[LEC]=1&CS3235[TUT]=3&CS2101[SEC]=6&CS2103T[TUT]=T6&CS4236[LEC]=1
 
@@ -319,6 +319,8 @@ function parseLink(link) {
     table_row.append($('<td>').html('<input type="checkbox" checked= "checked"/>'));
     table_row.append($('<td>').text($("#linktable tbody tr:last").index() + 2 + "."));
 
+    link = link.replace(/%5B/gi, "[");
+    link = link.replace(/%5D/gi, "]");
     link = link.split('timetable/');
     link = link[1];
     link = link.split('/');
